@@ -1,0 +1,62 @@
+.shop-detail {
+    display: flex;
+}
+
+.shop-detail__info {
+    width: 50%;
+    margin-left: 5%;
+}
+
+.shop-detail__img {
+    width: 90%;
+}
+
+.shop-detail__tag {
+    display: inline-block;
+}
+
+.shop-detail__overview {
+    width: 90%;
+}
+
+.shop-detail__reservation {
+    background-color: #305DFF;
+    width: 50%;
+    margin-right: 5%;
+    padding: 20px;
+    color: white;
+    border-radius: 5px;
+    position: relative;
+}
+
+.reservation-contents {
+    display: block;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+}
+
+.reservation-summary {
+    margin-top: 20px;
+    padding: 30px 20px;
+    background-color: #4D7FFF;
+    border-radius: 5px;
+}
+
+.reservation-summary th {
+    width: 120px;
+    text-align: left;
+}
+
+.reservation-button {
+    background-color: #0538FF;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px 0;
+    border-radius: 0 0 5px 5px;
+}

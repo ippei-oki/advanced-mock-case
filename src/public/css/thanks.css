@@ -1,0 +1,29 @@
+.thanks-card {
+    width: 400px;
+    margin: 30px auto 0;
+    padding: 50px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.message {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.login-button {
+    padding: 10px;
+    margin-bottom: 20px;
+    display: inline-block;
+    border-radius: 5px;
+    background: #305DFF;
+    color: white;
+    cursor: pointer;
+}
+
+.login-button_cha {
+    text-decoration: none;
+    color: white;
+}
