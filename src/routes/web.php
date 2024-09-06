@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\MypageController;
+use App\Http\Controllers\Auth\CustomRegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +19,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::post('/register', [CustomRegisteredUserController::class, 'store']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/', [ShopController::class, 'index'])->name('shops.index');
+    Route::get('/thanks', function () {return view('auth.thanks');})->name('thanks');
+    Route::post('/favorite/{shop}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
+    Route::get('/detail/{id}', [ShopController::class, 'show'])->name('shops.show');
+    Route::post('/reservations', [ReservationController::class, 'store'])->name('reservations.store');
+    Route::get('/done', function () {return view('done');})->name('reservations.done');
+    Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
+    Route::delete('/reservation/{id}/cancel', [MypageController::class, 'cancel'])->name('reservation.cancel');
 });

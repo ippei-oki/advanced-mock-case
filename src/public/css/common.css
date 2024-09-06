@@ -1,0 +1,72 @@
+body {
+    background-color: #EEEEEE;
+}
+
+button {
+    padding: 0;
+    border: none;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+}
+
+.header__inner {
+    margin: 0 auto;
+    padding: 20px 15px;
+    max-width: 1230px;
+}
+
+.header-utilities {
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    color: #305DFF;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.menu-btn {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.modal-window {
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    background-color: white;
+    padding-top: 30px;
+    padding-left: 50px;
+}
+
+.close-btn {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.menu-list {
+    list-style: none;
+    text-align: center;
+    padding-top: 100px;
+    font-size: 30px;
+    line-height: 60px;
+}
+
+.menu-list a {
+    text-decoration: none;
+    color: #305DFF;
+}
+
+.menu-list__logout {
+    text-decoration: none;
+    color: #305DFF;
+}

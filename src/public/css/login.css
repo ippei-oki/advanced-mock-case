@@ -1,0 +1,58 @@
+.login-card {
+    width: 400px;
+    margin: 100px auto 0;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    border-radius: 5px;
+}
+
+.login-form__heading {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #305DFF;
+    color: white;
+    border-radius: 5px 5px 0 0;
+}
+
+.form {
+    margin: 0 auto;
+    width: 70%;
+}
+
+.form__group {
+    margin-bottom: 5px;
+}
+
+.form__group-title {
+    text-align: left;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
+.form__input--text input {
+    height: 40px;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.form__button {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.form__button-submit {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background: #305DFF;
+    color: white;
+    cursor: pointer;
+}
