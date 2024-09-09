@@ -30,4 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/done', function () {return view('done');})->name('reservations.done');
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
     Route::delete('/reservation/{id}/cancel', [MypageController::class, 'cancel'])->name('reservation.cancel');
+    Route::get('/reservations/{id}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
+    Route::put('/reservations/{id}', [ReservationController::class, 'update'])->name('reservations.update');
 });

@@ -30,6 +30,7 @@
                                 <tr><td>Time</td><td>{{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}</td></tr>
                                 <tr><td>Number</td><td>{{ $reservation->number }}人</td></tr>
                             </table>
+                            <a class="reservation-change-btn" href="{{ route('reservations.edit', $reservation->id) }}" class="edit-btn">変更する</a>
                         </li>
                     @endforeach
                 </ul>
