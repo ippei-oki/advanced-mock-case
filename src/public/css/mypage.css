@@ -45,6 +45,16 @@
     font-weight: bold;
 }
 
+.reservation-review-btn {
+    text-decoration: none;
+    background-color: white;
+    color: #305DFF;
+    padding: 3px 10px;
+    margin-left: 120px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
 .favorites-info {
     width: 50%;
 }

@@ -1,5 +1,6 @@
 .shop-detail {
     display: flex;
+    align-items: baseline;
 }
 
 .shop-detail__info {
@@ -23,23 +24,27 @@
     background-color: #305DFF;
     width: 50%;
     margin-right: 5%;
-    padding: 20px;
     color: white;
     border-radius: 5px;
     position: relative;
+    min-height: auto;
+}
+
+.reservation-title {
+    margin-left: 20px;
 }
 
 .reservation-contents {
     display: block;
     padding: 5px;
-    margin-bottom: 10px;
+    margin: 0 20px 10px 20px;
     border-radius: 5px;
     border: none;
-    width: 100%;
+    width: 80%;
 }
 
 .reservation-summary {
-    margin-top: 20px;
+    margin: 20px 20px 0 20px;
     padding: 30px 20px;
     background-color: #4D7FFF;
     border-radius: 5px;
@@ -54,9 +59,9 @@
     background-color: #0538FF;
     text-align: center;
     width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    margin-top: 20px;
     padding: 10px 0;
     border-radius: 0 0 5px 5px;
+    position: relative;
+    left: 0;
 }
