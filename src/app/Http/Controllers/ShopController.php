@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -37,6 +38,7 @@ class ShopController extends Controller
     public function show($id)
     {
         $shop = Shop::findOrFail($id);
-        return view('shop_detail', compact('shop'));
+        $reviews = Review::where('shop_id', $id)->get();
+        return view('shop_detail', compact('shop', 'reviews'));
     }
 }

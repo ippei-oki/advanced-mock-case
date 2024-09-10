@@ -30,7 +30,11 @@
                                 <tr><td>Time</td><td>{{ \Carbon\Carbon::parse($reservation->time)->format('H:i') }}</td></tr>
                                 <tr><td>Number</td><td>{{ $reservation->number }}人</td></tr>
                             </table>
-                            <a class="reservation-change-btn" href="{{ route('reservations.edit', $reservation->id) }}" class="edit-btn">変更する</a>
+                            @if(\Carbon\Carbon::now()->greaterThan(\Carbon\Carbon::parse($reservation->date . ' ' . $reservation->time)))
+                                <a class="reservation-review-btn" href="{{ route('reviews.create', $reservation->shop->id) }}" class="rate-btn">評価する</a>
+                            @else
+                                <a  class="reservation-change-btn" href="{{ route('reservations.edit', $reservation->id) }}" class="edit-btn">変更する</a>
+                            @endif
                         </li>
                     @endforeach
                 </ul>

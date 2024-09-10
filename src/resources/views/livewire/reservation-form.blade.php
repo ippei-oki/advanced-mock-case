@@ -1,4 +1,4 @@
-<div>
+<div class="reservation-form">
     <form action="{{ route('reservations.store') }}" method="POST">
         @csrf
         <div>

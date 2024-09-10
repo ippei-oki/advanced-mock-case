@@ -6,6 +6,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Auth\CustomRegisteredUserController;
 
 /*
@@ -32,4 +33,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/reservation/{id}/cancel', [MypageController::class, 'cancel'])->name('reservation.cancel');
     Route::get('/reservations/{id}/edit', [ReservationController::class, 'edit'])->name('reservations.edit');
     Route::put('/reservations/{id}', [ReservationController::class, 'update'])->name('reservations.update');
+    Route::get('reviews/create/{shop}', [ReviewController::class, 'create'])->name('reviews.create');
+    Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
 });
