@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Http\Requests\ReservationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
-    public function store(Request $request)
+    public function store(ReservationRequest $request)
     {
         $reservation = new Reservation();
         $reservation->user_id = Auth::id();

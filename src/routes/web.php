@@ -7,6 +7,8 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\CustomRegisteredUserController;
 
 /*
@@ -21,6 +23,9 @@ use App\Http\Controllers\Auth\CustomRegisteredUserController;
 */
 
 Route::post('/register', [CustomRegisteredUserController::class, 'store']);
+Route::get('/register', function () {return view('auth.register');})->name('register');
+Route::post('/register', [RegisterController::class, 'create'])->name('register.store');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shops.index');
