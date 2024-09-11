@@ -3,8 +3,8 @@
         @csrf
         <div>
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
-            <input class="reservation-contents" type="date" wire:model="date" name="date" required>
-            <select class="reservation-contents" wire:model="time" name="time" required>
+            <input class="reservation-contents" type="date" wire:model="date" name="date">
+            <select class="reservation-contents" wire:model="time" name="time">
                 @for ($hour = 0; $hour < 24; $hour++)
                     @for ($minute = 0; $minute < 60; $minute += 30)
                         @php
@@ -16,7 +16,7 @@
                     @endfor
                 @endfor
             </select>
-            <select class="reservation-contents" wire:model="number" name="number" required>
+            <select class="reservation-contents" wire:model="number" name="number">
                 @for ($i = 1; $i <= 10; $i++)
                     <option value="{{ $i }}">{{ $i }}人</option>
                 @endfor
