@@ -8,6 +8,10 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StoreRepresentativeController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\CustomRegisteredUserController;
 
@@ -22,10 +26,9 @@ use App\Http\Controllers\Auth\CustomRegisteredUserController;
 |
 */
 
-Route::post('/register', [CustomRegisteredUserController::class, 'store']);
 Route::get('/register', function () {return view('auth.register');})->name('register');
 Route::post('/register', [RegisterController::class, 'create'])->name('register.store');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
+// Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shops.index');
@@ -40,4 +43,21 @@ Route::middleware('auth')->group(function () {
     Route::put('/reservations/{id}', [ReservationController::class, 'update'])->name('reservations.update');
     Route::get('reviews/create/{shop}', [ReviewController::class, 'create'])->name('reviews.create');
     Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/store', [StoreController::class, 'index'])->name('store.dashboard');
+});
+
+Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/store-representatives/create', [AdminController::class, 'create'])->name('admin.store-representatives.create');
+    Route::post('/admin/store-representatives', [AdminController::class, 'store'])->name('admin.store-representatives.store');
+});
+Route::middleware(['auth', 'checkRole:store_representative'])->group(function () {
+    Route::resource('/store', StoreController::class);
+    Route::get('/store', [StoreController::class, 'index'])->name('store.index');
+    Route::post('/store', [StoreController::class, 'store'])->name('store.store');
+    Route::get('/store/reservations', [StoreController::class, 'reservations']);
+    Route::get('/store/create', [StoreController::class, 'create'])->name('store.create');
+    Route::get('/store/{shop}/edit', [StoreController::class, 'edit'])->name('store.edit');
+    Route::put('/store/{shop}/edit', [StoreController::class, 'update'])->name('store.update');
 });

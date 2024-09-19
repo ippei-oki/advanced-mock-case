@@ -1,0 +1,31 @@
+.container {
+    background-color: #305DFF;
+    color: white;
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 5px;
+}
+
+.title {
+    padding: 30px 0 0 30px;
+}
+
+.button-wrapper {
+    text-align: center;
+}
+
+.button {
+    background-color: #0538FF;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+.shop-info {
+    margin-left: 30px;
+}
+
+.reservation-list {
+    list-style: none;
+}

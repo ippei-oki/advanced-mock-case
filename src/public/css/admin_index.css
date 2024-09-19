@@ -1,0 +1,23 @@
+.container {
+    background-color: #305DFF;
+    color: white;
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 5px;
+}
+
+.title {
+    padding: 30px 0 0 30px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    background-color: #0538FF;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    width: 100%;
+    text-decoration: none;
+    color: white;
+}

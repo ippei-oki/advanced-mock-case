@@ -1,0 +1,30 @@
+.container {
+    background-color: #305DFF;
+    color: white;
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 5px;
+}
+
+.title {
+    padding: 30px 0 0 30px;
+}
+
+.form-group {
+    margin-left: 30px;
+}
+
+.form-control {
+    padding: 3px;
+    margin: 0 0 10px 30px;
+    border-radius: 3px;
+    border: none;
+}
+
+.btn-primary {
+    margin-top: 30px;
+    background-color: #0538FF;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    width: 100%;
+}

@@ -59,4 +59,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isStoreRepresentative()
+    {
+        return $this->role === 'store_representative';
+    }
+
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class, 'shop_id');
+    }
 }

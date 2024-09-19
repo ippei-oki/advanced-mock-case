@@ -9,6 +9,14 @@ class Shop extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'area',
+        'genre',
+        'overview',
+        'image',
+    ];
+
     public function favoritedBy()
     {
         return $this->belongsToMany(User::class, 'favorites', 'shop_id', 'user_id');
@@ -16,7 +24,7 @@ class Shop extends Model
 
     public function reservations()
     {
-        return $this->hasMany(Reservation::class);
+        return $this->hasMany(Reservation::class, 'shop_id');
     }
 
     public function favorites()
@@ -27,5 +35,10 @@ class Shop extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
