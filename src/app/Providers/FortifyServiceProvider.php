@@ -6,12 +6,13 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Actions\Fortify\LoginResponse;
 use App\Http\Controllers\Auth\CustomRegisteredUserController;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
 use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -47,5 +48,11 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->when(CustomRegisteredUserController::class)
         ->needs(\Laravel\Fortify\Http\Controllers\RegisteredUserController::class)
         ->give(CustomRegisteredUserController::class);
+
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\LoginResponse::class,
+            \App\Actions\Fortify\LoginResponse::class
+        );
+
     }
 }
