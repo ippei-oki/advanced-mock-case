@@ -42,8 +42,8 @@
                 </div>
 
                 <div>
-                    <label for="image">Image(URL):</label>
-                    <input class="input-area" type="text" name="image" id="image" required>
+                    <label for="image">Image:</label>
+                    <input class="input-area" type="file" name="image" id="image" required>
                 </div>
             </div>
 

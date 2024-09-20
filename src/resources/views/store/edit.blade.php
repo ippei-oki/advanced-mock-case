@@ -43,8 +43,8 @@
                 </div>
 
                 <div>
-                    <label for="image">Image(URL):</label>
-                    <input class="input-area" type="text" name="image" id="image" value="{{ old('image', $shop->image) }}" required>
+                    <label for="image">Image:</label>
+                    <input class="input-area" type="file" name="image" id="image" value="{{ old('image', $shop->image) }}" required>
                 </div>
             </div>
 

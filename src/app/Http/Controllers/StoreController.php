@@ -34,15 +34,20 @@ class StoreController extends Controller
             'area' => 'required|string|max:191',
             'genre' => 'required|string|max:191',
             'overview' => 'required|string',
-            'image' => 'required|string',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $imageName = basename($imagePath);
+        }
 
         Shop::create([
             'name' => $request->name,
             'area' => $request->area,
             'genre' => $request->genre,
             'overview' => $request->overview,
-            'image' => $request->image,
+            'image' => $imageName,
         ]);
 
         return redirect()->route('store.index')->with('success', '新しい店舗が登録されました');
@@ -63,19 +68,32 @@ class StoreController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string',
-            'area' => 'required|string',
-            'genre' => 'required|string',
+        $request->validate([
+            'name' => 'required|string|max:191',
+            'area' => 'required|string|max:191',
+            'genre' => 'required|string|max:191',
             'overview' => 'required|string',
-            'image' => 'required|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
 
         $shop = Shop::find($id);
-        if ($shop) {
-            $shop->update($validatedData);
+        $shop->name = $request->input('name');
+        $shop->area = $request->input('area');
+        $shop->genre = $request->input('genre');
+        $shop->overview = $request->input('overview');
+
+        if ($request->hasFile('image')) {
+            if ($shop->image) {
+                Storage::delete('public/images/' . $shop->image);
+            }
+
+            $path = $request->file('image')->store('public/images');
+            $filename = basename($path);
+            $shop->image = $filename;
         }
 
-        return redirect()->route('store.index', ['shop' => $id])->with('success', '店舗情報を更新しました');
+        $shop->save();
+
+        return redirect()->back()->with('success', '店舗情報が更新されました。');
     }
 }
