@@ -50,7 +50,7 @@
                     @foreach($favorites as $favorite)
                         <div class="card">
                             <div class="card__img">
-                                <img src="{{ $favorite->shop->image }}" alt="Shop Image">
+                                <img src="{{ asset('storage/images/' . $favorite->shop->image) }}" alt="Shop Image">
                             </div>
                             <div class="card__content">
                                 <h2>{{ $favorite->shop->name }}</h2>

@@ -28,7 +28,6 @@ use App\Http\Controllers\Auth\CustomRegisteredUserController;
 
 Route::get('/register', function () {return view('auth.register');})->name('register');
 Route::post('/register', [RegisterController::class, 'create'])->name('register.store');
-// Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shops.index');
