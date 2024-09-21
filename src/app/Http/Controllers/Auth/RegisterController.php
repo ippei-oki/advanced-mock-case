@@ -26,7 +26,7 @@ class RegisterController extends Controller
 
         auth()->attempt($request->only('email', 'password'));
 
-        return redirect()->route('thanks');
+        return redirect()->route('verification.notice');
     }
 
     protected function passwordRules()
