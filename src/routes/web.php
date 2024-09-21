@@ -14,6 +14,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\CustomRegisteredUserController;
+use App\Http\Controllers\Auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,19 @@ use App\Http\Controllers\Auth\CustomRegisteredUserController;
 Route::get('/register', function () {return view('auth.register');})->name('register');
 Route::post('/register', [RegisterController::class, 'create'])->name('register.store');
 
-Route::middleware('auth')->group(function () {
+Route::get('/email/verify', [VerificationController::class, 'show'])
+    ->middleware('auth')
+    ->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
+    ->middleware(['auth', 'signed'])
+    ->name('verification.verify');
+
+Route::post('/email/verification-notification', [VerificationController::class, 'resend'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
+
+Route::middleware('auth', 'verified')->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shops.index');
     Route::get('/thanks', function () {return view('auth.thanks');})->name('thanks');
     Route::post('/favorite/{shop}', [FavoriteController::class, 'toggleFavorite'])->name('favorite.toggle');
@@ -46,12 +59,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/store', [StoreController::class, 'index'])->name('store.dashboard');
 });
 
-Route::middleware(['auth', 'checkRole:admin'])->group(function () {
+Route::middleware(['auth', 'checkRole:admin', 'verified'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/store-representatives/create', [AdminController::class, 'create'])->name('admin.store-representatives.create');
     Route::post('/admin/store-representatives', [AdminController::class, 'store'])->name('admin.store-representatives.store');
 });
-Route::middleware(['auth', 'checkRole:store_representative'])->group(function () {
+
+Route::middleware(['auth', 'checkRole:store_representative', 'verified'])->group(function () {
     Route::resource('/store', StoreController::class);
     Route::get('/store', [StoreController::class, 'index'])->name('store.index');
     Route::post('/store', [StoreController::class, 'store'])->name('store.store');
