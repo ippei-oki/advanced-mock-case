@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="title">店舗情報管理</h1>
+        <h1 class="title">店舗代表者ダッシュボード</h1>
         <div class="button-wrapper">
             <a class="button" href="{{ route('store.create') }}">新しい店舗を登録</a>
         </div>
@@ -31,5 +31,9 @@
                 </li>
             @endforeach
         </ul>
+
+        <div class="button-wrapper">
+            <a class="button" href="{{ route('store.notifications.index') }}">お知らせメール送信</a>
+        </div>
     </div>
 @endsection
