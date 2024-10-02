@@ -10,14 +10,17 @@
     padding: 30px 0 0 30px;
 }
 
-.button {
+.button-area {
     display: flex;
-    justify-content: center;
-    margin-top: 30px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    margin: 30px 0;
     background-color: #0538FF;
     padding: 10px;
-    border-radius: 0 0 5px 5px;
-    width: 100%;
+    border-radius: 5px;
     text-decoration: none;
     color: white;
 }

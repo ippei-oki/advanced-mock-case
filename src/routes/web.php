@@ -9,7 +9,9 @@ use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminNotificationController;
 use App\Http\Controllers\StoreRepresentativeController;
+use App\Http\Controllers\StoreNotificationController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -63,14 +65,18 @@ Route::middleware(['auth', 'checkRole:admin', 'verified'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/store-representatives/create', [AdminController::class, 'create'])->name('admin.store-representatives.create');
     Route::post('/admin/store-representatives', [AdminController::class, 'store'])->name('admin.store-representatives.store');
+    Route::get('/admin/notifications', [AdminNotificationController::class, 'index'])->name('admin.notifications.index');
+    Route::post('/admin/notifications', [AdminNotificationController::class, 'send'])->name('admin.notifications.send');
 });
 
 Route::middleware(['auth', 'checkRole:store_representative', 'verified'])->group(function () {
-    Route::resource('/store', StoreController::class);
+    Route::resource('/store', StoreController::class)->except(['show']);
     Route::get('/store', [StoreController::class, 'index'])->name('store.index');
     Route::post('/store', [StoreController::class, 'store'])->name('store.store');
     Route::get('/store/reservations', [StoreController::class, 'reservations']);
     Route::get('/store/create', [StoreController::class, 'create'])->name('store.create');
     Route::get('/store/{shop}/edit', [StoreController::class, 'edit'])->name('store.edit');
     Route::put('/store/{shop}/edit', [StoreController::class, 'update'])->name('store.update');
+    Route::get('/store/notifications', [StoreNotificationController::class, 'index'])->name('store.notifications.index');
+    Route::post('/store/notifications/send', [StoreNotificationController::class, 'send'])->name('store.notifications.send');
 });
