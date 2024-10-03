@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
                     \Log::error('ユーザーまたはメールが存在しません: ' . $reservation->id);
                 }
             }
-        })->dailyAt('15:38');
+        })->dailyAt('07:00');
     }
 
     /**
