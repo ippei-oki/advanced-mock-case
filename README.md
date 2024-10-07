@@ -18,10 +18,12 @@ https://github.com/ippei-oki/advanced-mock-case
 ・Laravel 8.83.27　・NGINX 1.21.1　・PHP 8.3.7　・MySQL 8.0.26
 
 ## テーブル設計
-![image](https://github.com/user-attachments/assets/b02e91b6-1f14-4ace-b2e5-5f71202432be)
+![image](https://github.com/user-attachments/assets/4e77c931-ac6a-48f3-aad3-897add7d5cde)
+
 
 ## ER図
-![image](https://github.com/user-attachments/assets/ab1c673f-5dea-45ba-97e7-78b5273f956d)
+![image](https://github.com/user-attachments/assets/70d9b535-6569-4f38-b8dd-4fa095ddffcb)
+
 
 ## 環境構築
 **Dockerビルド**
