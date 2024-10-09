@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "bacon/bacon-qr-code": "^2.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/fortify": "^1.19",
@@ -16,7 +17,11 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.12",
-        "nesbot/carbon": "2.72.5"
+        "nesbot/carbon": "2.72.5",
+        "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/pdf-to-image": "^3.1",
+        "spatie/pdf-to-text": "^1.53",
+        "stripe/stripe-php": "^16.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

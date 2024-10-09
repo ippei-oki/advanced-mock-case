@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use App\Mail\ReservationReminderMail;
 
 class Kernel extends ConsoleKernel
 {
@@ -29,12 +30,12 @@ class Kernel extends ConsoleKernel
                 }
 
                 if ($reservation->user && $reservation->user->email) {
-                    Mail::to($reservation->user->email)->send(new \App\Mail\ReservationReminderMail($reservation));
+                    Mail::to($reservation->user->email)->send(new ReservationReminderMail($reservation));
                 } else {
                     \Log::error('ユーザーまたはメールが存在しません: ' . $reservation->id);
                 }
             }
-        })->dailyAt('07:00');
+        })->dailyAt('17:11');
     }
 
     /**

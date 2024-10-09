@@ -14,6 +14,7 @@ use App\Http\Controllers\StoreRepresentativeController;
 use App\Http\Controllers\StoreNotificationController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\CustomRegisteredUserController;
 use App\Http\Controllers\Auth\VerificationController;
@@ -59,6 +60,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/store', [StoreController::class, 'index'])->name('store.dashboard');
+    Route::get('/reservation/{id}/qr', [ReservationController::class, 'showQrCode'])->name('reservation.qr');
+    Route::get('/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
+    Route::get('/success', function () {return 'Payment successful!';})->name('payment.success');
+    Route::get('/cancel', function () {return 'Payment cancelled!';})->name('payment.cancel');
 });
 
 Route::middleware(['auth', 'checkRole:admin', 'verified'])->group(function () {
