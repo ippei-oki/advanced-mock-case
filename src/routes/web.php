@@ -61,6 +61,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/store', [StoreController::class, 'index'])->name('store.dashboard');
     Route::get('/reservation/{id}/qr', [ReservationController::class, 'showQrCode'])->name('reservation.qr');
+    Route::get('/reservation/qr/{id}', [ReservationController::class, 'showQrPage'])->name('reservation.cont');
     Route::get('/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
     Route::get('/success', function () {return 'Payment successful!';})->name('payment.success');
     Route::get('/cancel', function () {return 'Payment cancelled!';})->name('payment.cancel');

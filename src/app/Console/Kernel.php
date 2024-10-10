@@ -7,6 +7,9 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use App\Mail\ReservationReminderMail;
+use Endroid\QrCode\Builder\Builder;
+use Endroid\QrCode\Writer\SvgWriter;
+use Endroid\QrCode\Encoding\Encoding;
 
 class Kernel extends ConsoleKernel
 {
@@ -29,13 +32,24 @@ class Kernel extends ConsoleKernel
                     continue;
                 }
 
+                $qrUrl = route('reservation.cont', ['id' => $reservation->id]);
+                $qrCode = Builder::create()
+                    ->writer(new SvgWriter())
+                    ->data($qrUrl)
+                    ->encoding(new Encoding('UTF-8'))
+                    ->size(300)
+                    ->margin(10)
+                    ->build();
+
+                $qrCodeSvg = $qrCode->getString();
+
                 if ($reservation->user && $reservation->user->email) {
-                    Mail::to($reservation->user->email)->send(new ReservationReminderMail($reservation));
+                    Mail::to($reservation->user->email)->send(new ReservationReminderMail($reservation, $qrCodeSvg));
                 } else {
                     \Log::error('ユーザーまたはメールが存在しません: ' . $reservation->id);
                 }
             }
-        })->dailyAt('17:11');
+        })->dailyAt('07:00');
     }
 
     /**
