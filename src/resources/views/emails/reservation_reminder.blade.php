@@ -13,11 +13,8 @@
     <p>人数: {{ $reservation->number }}名</p>
     <p>お待ちしております。</p>
     <p>以下のQRコードを来店時にご提示ください。</p>
-    <!-- <img src="{{ $message->embedData(QrCode::format('png')->size(200)->generate(route('reservation.qr', $reservation->id)), 'QrCode.png') }}" alt="QRコード"> -->
-    <!-- <img src="{{ $message->embedData(QrCode::format('svg')->size(200)->generate(route('reservation.qr', $reservation->id)), 'QrCode.svg') }}" alt="QRコード"> -->
-    <!-- {!! QrCode::format('svg')->size(200)->generate(route('reservation.qr', $reservation->id)) !!} -->
-    <!-- <img src="data:image/svg+xml;base64,{{ base64_encode(QrCode::format('svg')->size(200)->generate(route('reservation.qr', $reservation->id))) }}" alt="QRコード"> -->
-    <img src="{{ $message->embedData($qrCodeSvg, 'QrCode.svg') }}" alt="QRコード">
-
+    <div>
+        {!! $qrCodeSvg !!}
+    </div>
 </body>
 </html>
