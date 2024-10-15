@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReservationReminder;
 use App\Models\Reservation;
 use App\Http\Requests\ReservationRequest;
 use Illuminate\Http\Request;
@@ -10,7 +11,6 @@ use Illuminate\Support\Facades\Mail;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\SvgWriter;
 use Endroid\QrCode\Encoding\Encoding;
-use App\Mail\ReservationReminder;
 
 class ReservationController extends Controller
 {
@@ -24,7 +24,7 @@ class ReservationController extends Controller
         $reservation->number = $request->input('number');
         $reservation->save();
 
-        return redirect()->route('reservations.done');
+        return redirect()->route('payment.checkout');
     }
 
     public function edit($id)
@@ -48,27 +48,6 @@ class ReservationController extends Controller
         $reservation->save();
 
         return redirect()->route('mypage')->with('success', '予約が変更されました');
-    }
-
-    public function showQrCode($id)
-    {
-        $reservation = Reservation::findOrFail($id);
-
-        $qrUrl = route('reservation.cont', ['id' => $reservation->id]);
-
-        $qrCode = Builder::create()
-            ->writer(new SvgWriter())
-            ->data($qrUrl)
-            ->encoding(new Encoding('UTF-8'))
-            ->size(300)
-            ->margin(10)
-            ->build();
-
-        $qrCodeSvg = $qrCode->getString();
-
-        Mail::to($reservation->user->email)->send(new ReservationReminderMail($reservation, $qrCodeSvg));
-
-        return view('reservation.qr', compact('reservation', 'qrCodeSvg'));
     }
 
     public function showQrPage($id)
