@@ -28,7 +28,7 @@ class PaymentController extends Controller
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => route('payment.success'),
+                'success_url' => route('reservations.done'),
                 'cancel_url' => route('payment.cancel'),
             ]);
 

@@ -45,6 +45,8 @@ Route::post('/email/verification-notification', [VerificationController::class, 
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
+Route::get('/reservation/qr/{id}', [ReservationController::class, 'showQrPage'])->name('reservation.cont');    
+
 Route::middleware('auth', 'verified')->group(function () {
     Route::get('/', [ShopController::class, 'index'])->name('shops.index');
     Route::get('/thanks', function () {return view('auth.thanks');})->name('thanks');
@@ -60,8 +62,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/store', [StoreController::class, 'index'])->name('store.dashboard');
-    Route::get('/reservation/{id}/qr', [ReservationController::class, 'showQrCode'])->name('reservation.qr');
-    Route::get('/reservation/qr/{id}', [ReservationController::class, 'showQrPage'])->name('reservation.cont');
     Route::get('/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
     Route::get('/success', function () {return 'Payment successful!';})->name('payment.success');
     Route::get('/cancel', function () {return 'Payment cancelled!';})->name('payment.cancel');
