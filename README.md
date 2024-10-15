@@ -60,5 +60,5 @@ php artisan db:seed
 **ダミーデータ**
 1. 管理者 email: aaa@example.com
 2. 店舗代表者 email: bbb@example.com
-3. 一般ユーザー email: ccc@example.com
+3. 一般ユーザー email: ccc@example.com  
 パスワードは全て"99999999"
